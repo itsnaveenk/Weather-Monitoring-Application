@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -36,8 +37,8 @@ public class WeatherService {
         dataRepo.save(data);
 
         // Compute daily aggregates
-        LocalDate today = LocalDate.now();
-        List<WeatherData> todayData = dataRepo.findByCityAndDate(data.getCity(), today);
+        LocalDateTime today = LocalDateTime.now();
+        List<WeatherData> todayData = dataRepo.findByCityAndDate(data.getCity(), LocalDate.from(today));
 
         DoubleSummaryStatistics stats = todayData.stream()
                 .mapToDouble(d -> Utils.kelvinToCelsius(d.getTemperatureKelvin()))

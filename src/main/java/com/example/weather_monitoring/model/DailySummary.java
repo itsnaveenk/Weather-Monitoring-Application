@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -15,7 +16,7 @@ public class DailySummary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String city;
-    private LocalDate date;
+    private LocalDateTime date;
     private Double avgTemperature;
     private Double maxTemperature;
     private Double minTemperature;
